@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org">
+<!doctype html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Taco Cloud</title>
 </head>
 <body>
-    <h1>Welcome to...</h1>
+    <h1>Design your taco!</h1>
     <img th:src="@{images/TacoCloud.png}">
+
+    <a th:href="@{/design}" id="design">Design a taco</a>
 </body>
 </html>
