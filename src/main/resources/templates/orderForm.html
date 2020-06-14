@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+        <h1>Order your taco creations!</h1>
+
+        <img th:src="@{/images/TacoCloud.png}">
+        <a th:href="@{/design}" id="another">Design another taco</a><br/>
+
+        <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+                Please correct the problems below and resubmit.
+            </span>
+        </div>
+
+        <h3>Deliver my taco masterpieces to... </h3>
+        <laber for="name">Name: </laber>
+        <input type="text" th:field="*{name}">
+        <br/>
+
+        <laber for="street">Street address: </laber>
+        <input type="text" th:field="*{street}">
+        <br/>
+
+        <laber for="name">City: </laber>
+        <input type="text" th:field="*{city}">
+        <br/>
+
+        <laber for="name">State: </laber>
+        <input type="text" th:field="*{state}">
+        <br/>
+
+        <laber for="name">Zip code: </laber>
+        <input type="text" th:field="*{zip}">
+        <br/>
+
+        <h3>Here's how I'll pay...</h3>
+        <laber for="ccNumber">Credit Card #: </laber>
+        <input type="text" th:field="*{ccNumber}">
+        <br/>
+
+        <laber for="ccExpiration">Expiration: </laber>
+        <input type="text" th:field="*{ccExpiration}">
+        <br/>
+
+        <laber for="ccCVV">CVV: </laber>
+        <input type="text" th:field="*{ccCVV}">
+        <br/>
+
+        <input type="submit" value="Submit order">
+
+    </form>
+</body>
+</html>
