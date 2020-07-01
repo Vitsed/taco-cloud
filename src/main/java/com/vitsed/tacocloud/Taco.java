@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 public class Taco {
 
-    @NotNull
+//    @NotNull
     private Long id;
 
-    @NotNull
+//    @NotNull
     private Date createAt;
 
     @NotNull
