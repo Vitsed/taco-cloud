@@ -3,7 +3,9 @@ package com.vitsed.tacocloud.web;
 import com.vitsed.tacocloud.Ingredient;
 import com.vitsed.tacocloud.Ingredient.Type;
 import com.vitsed.tacocloud.Taco;
+import com.vitsed.tacocloud.data.IngredientRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +25,24 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 public class DesignTacoController {
 
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @GetMapping
     public String showDesignForm(Model model) {
 
-        model.addAttribute("design", new Taco());
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredientRepo.findAll().forEach(ingredient -> ingredients.add(ingredient));
+
+        Type[] types = Ingredient.Type.values();
+        for(var type : types) {
+            model.addAttribute(type.toString().toLowerCase(),
+                filterByType(ingredients, type));
+        }
         return "design";
     }
 

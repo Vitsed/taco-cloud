@@ -19,7 +19,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
     }
 
     @Override
-    public Iterable<Ingredient> finAll() {
+    public Iterable<Ingredient> findAll() {
         return jdbc.query("select id, name, type from Ingredient", this::mapRowToIngredient);
     }
 
@@ -31,7 +31,13 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        return null;
+        jdbc.update(
+            "insert into Ingredient (id, name, type) values (?,?,?)",
+            ingredient.getId(),
+            ingredient.getName(),
+            ingredient.getType()
+        );
+        return ingredient;
     }
 
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum) throws SQLException {

@@ -4,7 +4,7 @@ package com.vitsed.tacocloud.data;
 import com.vitsed.tacocloud.Ingredient;
 
 public interface IngredientRepository {
-    Iterable<Ingredient> finAll();
+    Iterable<Ingredient> findAll();
 
     Ingredient findOne(String id);
 
